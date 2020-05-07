@@ -2,7 +2,7 @@ const phrase = 'Para avanzar a la siguiente etapa, necesitas comentar el post di
 const keywords = ['T', 'P', 'H', 'Q', 'L', 'X','Y', 'J','U','A','V','W', 'N', 'G',
 'O', 'B', 'Ñ', 'K', 'Z', 'E', 'S', 'D', 'M', 'I', 'C', 'R', 'F']
 const total = []
-// const regExpr = /[a-z|á|é|í|ó|ú]+/gi
+const regExpr = /[a-z|á|é|í|ó|ú]+/gi
 
 /* -------------------- Helper -------------------- */
 
@@ -28,7 +28,14 @@ function replaceLetter(string) {
 
 class Word {
   constructor() {
-    // this.phrase = 
+    this.phrase = replaceLetter(phrase)
+    // Asigno todas las letras a un arreglo
+    this.phrase.match(regExpr).forEach(word => 
+      total.length !== 194 &&
+      word.toLowerCase().split('').forEach(letter => 
+        console.log(total.push(letter))
+      )
+    )
   }
 
   input(el) {
@@ -36,6 +43,7 @@ class Word {
     const form = !hasChildren ? document.createElement('form') : el.children[0]
     const input = !hasChildren ? document.createElement('input') : el.children[0].children[0]
     const span = !hasChildren ? document.createElement('span') : el.children[1]
+    const elementID = el.parentElement.dataset.id
 
     if (!hasChildren) {
       el.appendChild(form)
@@ -62,12 +70,14 @@ class Word {
       form.addEventListener('submit', e => {
         e.preventDefault()
         updateDisplay()
-        this.updateKeywords(input.value)
+        this.updateKeywords(elementID, input.value)
+        this.checkKeywords()
       })
 
       input.addEventListener('blur', e => {
         updateDisplay()
-        this.updateKeywords(el.parentElement.dataset.id, input.value)
+        this.updateKeywords(elementID, input.value)
+        this.checkKeywords()
       })
     } else {
       input.value = span.textContent 
@@ -76,18 +86,7 @@ class Word {
 
       input.style.width = '40px'
       input.focus()
-
-      form.addEventListener('submit', e => {
-        e.preventDefault()
-        updateDisplay()
-        this.updateKeywords(input.value)
-      })
-
-
-      input.addEventListener('blur', e => {
-        updateDisplay()
-        this.updateKeywords(input.value)
-      })
+      input.setSelectionRange(0, input.value.length)
     }
 
     // Helper
@@ -100,10 +99,10 @@ class Word {
   }
 
   checkKeywords() {
-    const span = document.querySelectorAll('p > span')
+    const td = document.querySelectorAll('thead > tr > td[data-id]')
     const letters = []
     
-    Array.from(span).forEach(item => 
+    Array.from(td).forEach(item => 
       item.textContent && letters.push(item.textContent)
     )
 
@@ -116,7 +115,6 @@ class Word {
   }
 
   updateKeywords(id, word) {
-    // const tds = document.querySelectorAll('tbody > tr > td:not([data-id])')
     const tds = document.querySelectorAll(`thead > tr > td[data-id="${id}"]`)
 
     Array.from(tds).forEach(td => td.textContent = word.toUpperCase())
