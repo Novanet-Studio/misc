@@ -1,5 +1,8 @@
 import Word from './word.js'
 
+const keywords = ['T', 'P', 'H', 'Q', 'L', 'X','Y', 'J','U','A','V','W', 'N', 'G',
+'O', 'B', 'Ñ', 'K', 'Z', 'E', 'S', 'D', 'M', 'I', 'C', 'R', 'F']
+
 class Table {
 
   constructor() {
@@ -42,7 +45,7 @@ class Table {
   }
 
   /* -------------------- Public -------------------- */
-  mainRow(keywords) {
+  mainRow() {
     keywords.forEach((key, i) => {
       this.headTds += `<td>${i+1}</td>`
       this.bodyTds += `<td data-id=${i+1}><p></p></td>`

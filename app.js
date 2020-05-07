@@ -1,11 +1,9 @@
 import Table from './table.js';
 
 const table = new Table();
-const keywords = ['T', 'P', 'H', 'Q', 'L', 'X','Y', 'J','U','A','V','W', 'N', 'G',
-'O', 'B', 'Ñ', 'K', 'Z', 'E', 'S', 'D', 'M', 'I', 'C', 'R', 'F']
 
 table
-  .mainRow(keywords)
+  .mainRow()
   .rows([
     [2, 10, 26, 10],
     [10, 11, 10, 13, 19, 10, 26],
@@ -13,7 +11,7 @@ table
     [5, 10],
     [21, 24, 14, 9, 24, 20, 13, 1, 20],
     [20, 1, 10, 2, 10],
-    {rows: [null], word: ','}
+    {rows: [null], word: ','} // Empty cell with separator ","
   ])
   .rows([
     [13, 20, 25, 20, 21, 24, 1, 10, 21],
