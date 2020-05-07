@@ -22,12 +22,12 @@ function replaceLetter(string) {
 }
 
 
-/* -------------------- Class -------------------- */
+/* -------------------- Main Class -------------------- */
 
 class Word {
   constructor() {
     this.phrase = replaceLetter(phrase)
-    // Asigno todas las letras a un arreglo
+    // Push all letters into array
     this.phrase.match(regExpr).forEach(word => 
       total.length !== 194 &&
       word.toLowerCase().split('').forEach(letter => 
@@ -46,24 +46,24 @@ class Word {
     el.appendChild(form)
     el.appendChild(span)
 
-    // Asigno contenido
+    // Set content
     span.textContent = el.textContent
     input.value = span.textContent
     
-    // Maximo de caracteres
+    // Just one character
     input.maxLength = 1
 
     form.appendChild(input)
 
-    // Debe reemplazarse por clases
+    // Must be replaced with class
     form.style.display = 'inline-block'
     span.style.display = 'none'
-
     input.style.width = '40px'
+
     input.focus()
     input.setSelectionRange(0, input.value.length)
 
-    // para guardar contenido
+    // Save the letter
     form.addEventListener('submit', e => {
       e.preventDefault()
       updateDisplay()
@@ -77,7 +77,7 @@ class Word {
       this.checkKeywords()
     })
 
-    // Helper
+    // Closure Helper
     function updateDisplay() {
       span.style.display = 'inline-block'
       form.style.display = 'none'
@@ -94,17 +94,18 @@ class Word {
       item.textContent && letters.push(item.textContent)
     )
 
-    console.log(letters)
+    // console.log(letters)
 
     if (letters.length === total.length) {
       letters.join('').toLowerCase() === total.join('') && 
-      alert('Lo hiciste') // aqui acciona el modal de success
+      alert('Lo hiciste') // Here's goes the modal success, replace.
     }
   }
 
   updateKeywords(id, word) {
+    // Only the specifid data-id
     const tds = document.querySelectorAll(`thead > tr > td[data-id="${id}"]`)
-
+    // Update cell content
     Array.from(tds).forEach(td => td.textContent = word.toUpperCase())
   }
 }

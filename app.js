@@ -3,7 +3,8 @@ import Table from './table.js';
 const table = new Table();
 
 table
-  .mainRow()
+  .mainRow() // Where is putting the letters
+  // Create the tables, the numbers meant where goes the letters
   .rows([
     [2, 10, 26, 10],
     [10, 11, 10, 13, 19, 10, 26],
@@ -53,4 +54,5 @@ table
     [3, 20, 7],
   ])
 
+// Run listener
 table.event()

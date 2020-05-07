@@ -3,10 +3,31 @@ import Word from './word.js'
 const keywords = ['T', 'P', 'H', 'Q', 'L', 'X','Y', 'J','U','A','V','W', 'N', 'G',
 'O', 'B', 'Ñ', 'K', 'Z', 'E', 'S', 'D', 'M', 'I', 'C', 'R', 'F']
 
-class Table {
+/* -------------------- Helper -------------------- */
 
+function template(theadContent, tbodyContent, space = false) {
+  return `
+    <table class="table-bordered table-striped">
+      <thead>
+        <tr>
+          ${theadContent}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          ${tbodyContent}
+        </tr>
+      </tbody>
+    <table>
+    ${space ? '<br><br>': ''}` // Replace with other element or class
+}
+
+/* -------------------- Main Class -------------------- */
+
+class Table {
   constructor() {
     this.parent = document.querySelector('.container');
+    // Template
     this.bodyTds = ''
     this.headTds = ''
     this.template = ''
@@ -26,50 +47,21 @@ class Table {
       this.bodyTds += `<td>${row ? row : ' '}</td>`;
     });
 
-    this.template = `
-    <table class="table-bordered table-striped">
-      <thead>
-        <tr>
-          ${this.headTds}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          ${this.bodyTds}
-        </tr>
-      </tbody>
-    <table>
-  `;
-
+    this.template = template(this.headTds, this.bodyTds)
     this.parent.innerHTML += this.template;
   }
 
   /* -------------------- Public -------------------- */
   mainRow() {
-    keywords.forEach((key, i) => {
+    keywords.forEach((_, i) => {
       this.headTds += `<td>${i+1}</td>`
       this.bodyTds += `<td data-id=${i+1}><p></p></td>`
     })
 
-  this.template = `
-    <table class="table-bordered table-striped">
-      <thead>
-        <tr>
-          ${this.headTds}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          ${this.bodyTds}
-        </tr>
-      </tbody>
-    <table>
-    <br>
-    <br>
-  `;
-
+    this.template = template(this.headTds, this.bodyTds, true)
     this.parent.innerHTML += this.template
 
+    // Chaining Pattern
     return this
   }
 
@@ -82,6 +74,7 @@ class Table {
   }
 
   event() {
+    // Event Propagation - Delegation
     window.addEventListener('click', e => {
       if (!e.target.children.length) return
 
