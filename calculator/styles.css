@@ -1,0 +1,103 @@
+/* --------------- Reset --------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif, 'Arial';
+}
+
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+header, aside, main,
+footer, div, a {
+	display: block;
+}
+
+/* --------------- Classes --------------- */
+.container {
+  width: 650px;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* --------------- BLOCK --------------- */
+.card {
+  /* padding: 1rem; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "top    top"
+                       "sub    sub"
+                       "left   right"
+                       "bottom bottom";
+  border-radius: .4rem;
+  box-shadow: 0 0 8px 2px rgba(1, 1, 1, 0.2);
+}
+
+/* --------------- HEADER --------------- */
+
+.card__header {
+  padding: 1.5rem;
+  grid-area: top;
+  background-color: rgb(21, 196, 172);
+}
+
+.card__title {
+  font-weight: 100;
+  margin-bottom: 1rem;
+  color: #272727;
+}
+
+/* --------------- SELECTION --------------- */
+.card__selection-types {
+  grid-area: sub;
+}
+
+.card__wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card__checkbox {
+  margin-right: 1rem;
+}
+
+.card__label {
+  margin-right: 2rem;
+}
+
+.card__select {
+  width: calc(100% - 10px);
+  text-align: center;
+  height: 2rem;
+  border: none;
+  border-bottom: 1px solid red;
+  background-color: inherit;
+}
+/* --------------- CONTENT --------------- */
+
+.card__content {
+  /* grid-area: left; */
+  background-color: lawngreen;
+}
+
+.card__content--rigth {
+  grid-area: right;
+}
+
+.card__content--left {
+  grid-area: left;
+  background-color: lightseagreen;
+}
+
+/* --------------- FOOTER --------------- */
+
+.card__footer {
+  background-color: lightcoral;
+  grid-area: bottom;
+}

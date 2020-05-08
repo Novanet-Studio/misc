@@ -1,39 +1,13 @@
-const total = []
-const regExpr = /[a-z|á|é|í|ó|ú]+/gi
-const phrase = 'Para avanzar a la siguiente etapa, necesitas comentar el post diciendo con cuál dios de la mitología relacionas a Novanet y por qué. Busca información sobre nosotros en nuestro sitio web. Debes comenzar tu comentario con la palabra hey'
-
-/* -------------------- Helper -------------------- */
-
-function replaceLetter(string) {
-  const regExprVocals = /[á|é|í|ó|ú]/g
-
-  return string.replace(regExprVocals, x => {
-    if (x === 'á')
-      return 'a'
-    else if (x === 'é')
-      return 'e'
-    else if (x === 'í')
-      return 'i'
-    else if (x === 'ó')
-      return 'o'
-    else if (x === ú)
-      return 'u'
-  })
-}
+const phrase = 'dinos con cual dios de la mitologia relacionas a Novanet y por que'
+const regExpr = /[a-z]/gi
 
 
 /* -------------------- Main Class -------------------- */
 
 class Word {
   constructor() {
-    this.phrase = replaceLetter(phrase)
-    // Push all letters into array
-    this.phrase.match(regExpr).forEach(word => 
-      total.length !== 194 &&
-      word.toLowerCase().split('').forEach(letter => 
-        total.push(letter)
-      )
-    )
+    this.phrase = phrase
+    this.total = this.phrase.match(regExpr)
   }
 
   input(el) {
@@ -94,10 +68,8 @@ class Word {
       item.textContent && letters.push(item.textContent)
     )
 
-    // console.log(letters)
-
-    if (letters.length === total.length) {
-      letters.join('').toLowerCase() === total.join('') && 
+    if (letters.length === this.total.length) {
+      letters.join('').toLowerCase() === this.total.join('').toLowerCase() && 
       alert('Lo hiciste') // Here's goes the modal success, replace.
     }
   }
