@@ -5,21 +5,17 @@ const keywords = ['T', 'P', 'H', 'Q', 'L', 'X','Y', 'J','U','A','V','W', 'N', 'G
 
 /* -------------------- Helper -------------------- */
 
-function template(theadContent, tbodyContent, space = false) {
+function template(headContent, bodyContent, space = false) {
   return `
-    <table class="table-bordered table-striped">
-      <thead>
-        <tr>
-          ${theadContent}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          ${tbodyContent}
-        </tr>
-      </tbody>
-    <table>
-    ${space ? '<br><br>': ''}` // Replace with other element or class
+    <div class="table">
+      <div class="table__head">
+          ${headContent}
+      </div>
+      <div class="table__body">
+          ${bodyContent}
+      </div>
+    </div>
+    ${space ? '<br><br>' : ''}` // Replace with other element or class
 }
 
 /* -------------------- Main Class -------------------- */
@@ -28,37 +24,38 @@ class Table {
   constructor() {
     this.parent = document.querySelector('.container');
     // Template
-    this.bodyTds = ''
-    this.headTds = ''
+    this.body = ''
+    this.head = ''
     this.template = ''
   }
   /* -------------------- Private -------------------- */
   _generateTables(rows, word = false) {
     // Reset
     this.template = ''
-    this.headTds = ''
-    this.bodyTds = ''
+    this.head = ''
+    this.body = ''
 
     rows.forEach((row, i) => {
-      this.headTds += `
-        <td ${row ? `data-id="${row}"`:''}>
+      this.head += `
+        <div class="table__item table__item--pointer" ${row ? `data-id="${row}"` : ''}>
           ${word ? word[i].toUpperCase() : ''}
-        </td>`;
-      this.bodyTds += `<td>${row ? row : ' '}</td>`;
-    });
+        </div>`
+      this.body += `<div class="table__item">${row ? row : ' '}</div>`
+    })
 
-    this.template = template(this.headTds, this.bodyTds)
-    this.parent.innerHTML += this.template;
+    this.template = template(this.head, this.body)
+    this.parent.innerHTML += this.template
   }
 
   /* -------------------- Public -------------------- */
   mainRow() {
     keywords.forEach((_, i) => {
-      this.headTds += `<td>${i+1}</td>`
-      this.bodyTds += `<td data-id=${i+1}><p></p></td>`
+      this.head += `<div class="table__item">${i+1}</div>`
+      // this.body += `<div class="table__item" data-id=${i + 1}><p></p></div>`
+      this.body += `<div class="table__item table__item--pointer" data-id=${i + 1}>x</div>`;
     })
 
-    this.template = template(this.headTds, this.bodyTds, true)
+    this.template = template(this.head, this.body, true)
     this.parent.innerHTML += this.template
 
     // Chaining Pattern
@@ -76,10 +73,11 @@ class Table {
   event() {
     // Event Propagation - Delegation
     window.addEventListener('click', e => {
-      if (!e.target.children.length) return
+      if (!e.target.classList.contains('table__item--pointer')) return
 
-      if (e.target.localName === 'td' && e.target.children[0])
-        new Word().input(e.target.children[0])
+      new Word().input(e.target)
+      // if (e.target.localName === 'td' && e.target.children[0])
+      //   new Word().input(e.target.children[0])
     })
   }
 }
