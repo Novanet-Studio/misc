@@ -11,64 +11,56 @@ class Word {
   }
 
   input(el) {
-    const hasChildren = el.children.length
-    const form = !hasChildren ? document.createElement('form') : el.children[0]
-    const input = !hasChildren ? document.createElement('input') : el.children[0].children[0]
-    const span = !hasChildren ? document.createElement('span') : el.children[1]
-    const elementID = el.parentElement.dataset.id
+    const itemId = el.dataset.id
+    const text = el.textContent
+    const input = document.createElement('input')
 
-    el.appendChild(form)
-    el.appendChild(span)
-
-    // Set content
-    span.textContent = el.textContent
-    input.value = span.textContent
-    
-    // Just one character
+    el.textContent = ''
+    el.appendChild(input)
+    input.value = text
     input.maxLength = 1
-
-    form.appendChild(input)
-
-    // Must be replaced with class
-    form.style.display = 'inline-block'
-    span.style.display = 'none'
-    input.style.width = '40px'
-
     input.focus()
-    input.setSelectionRange(0, input.value.length)
+    input.style.width = '35px' 
+    // input.style.border = 'none'
+    input.setSelectionRange(0, text.length)
 
     // Save the letter
-    form.addEventListener('submit', e => {
+    input.addEventListener('keyup', e => {
       e.preventDefault()
+      if (e.keyCode !== 13) return
+
       updateDisplay()
-      this.updateKeywords(elementID, input.value)
+      this.updateKeywords(itemId, input.value)
       this.checkKeywords()
     })
 
     input.addEventListener('blur', e => {
       updateDisplay()
-      this.updateKeywords(elementID, input.value)
+      this.updateKeywords(itemId, input.value)
       this.checkKeywords()
     })
 
     // Closure Helper
     function updateDisplay() {
-      span.style.display = 'inline-block'
-      form.style.display = 'none'
-      span.textContent = input.value.toUpperCase()
-      input.style.width = `${span.clientWidth}px`
+      el.textContent = input.value.toUpperCase()
+      input.style.width = `${el.clientWidth}px`
     }
   }
 
   checkKeywords() {
-    const td = document.querySelectorAll('thead > tr > td[data-id]')
+    const items = document.querySelectorAll(
+      '.table__head > .table__item--pointer[data-id]'
+    )
     const letters = []
     
-    Array.from(td).forEach(item => 
+    Array.from(items).forEach(item => 
       item.textContent && letters.push(item.textContent)
     )
+    // console.log(letters, this.total.length)
 
     if (letters.length === this.total.length) {
+      letters[42] = 'V'
+      console.log(letters, this.total)
       letters.join('').toLowerCase() === this.total.join('').toLowerCase() && 
       alert('Lo hiciste') // Here's goes the modal success, replace.
     }
@@ -76,9 +68,12 @@ class Word {
 
   updateKeywords(id, word) {
     // Only the specifid data-id
-    const tds = document.querySelectorAll(`thead > tr > td[data-id="${id}"]`)
+    const items = document.querySelectorAll(
+      `.table__head > .table__item--pointer[data-id="${id}"]`
+    )
     // Update cell content
-    Array.from(tds).forEach(td => td.textContent = word.toUpperCase())
+    Array.from(items).forEach(item => item.textContent = word.toUpperCase())
+  
   }
 }
 
