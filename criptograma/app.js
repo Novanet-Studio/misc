@@ -5,7 +5,7 @@ const table = new Table();
 table
   .mainRow() // Where is putting the letters
   // Create the tables, the numbers meant where goes the letters
-  .rows([
+  /*.rows([
     [22, 24, 13, 15, 21],
     [25, 15, 13],
     [25, 9, 10, 5],
@@ -20,7 +20,9 @@ table
     [2, 15, 26],
     [4, 9, 20],
     {rows:[null], word: '.'}
-  ])
+  ])*/
 
 // Run listener
 table.event()
+
+
