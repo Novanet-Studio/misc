@@ -18,8 +18,7 @@ table
     { rows: [13, 15, 11, 10, 13, 20, 1], word: 'Novanet' },
     [7],
     [2, 15, 26],
-    [4, 9, 20],
-    {rows:[null], word: '.'}
+    [4, 9, 20]
   ])
 
 // Run listener
