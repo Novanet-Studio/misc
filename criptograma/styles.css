@@ -11,9 +11,18 @@ body {display:flex;
   background-image:url("http://gruponovanet.com.ve/site/img/bg.svg")}
 
 
+body:before {background-color: rgba(255, 255, 255, 0.47);
+  content:'';
+  display:block;
+  height:100%;
+  position:absolute;
+  width:100%}  
+
+
 .container {
   display:flex;
-  flex-wrap:wrap}
+  flex-wrap:wrap; 
+  height:100vh}
 
 
 #modal {
@@ -26,7 +35,7 @@ body {display:flex;
   width:100%}
 
 
-.modal__conent {
+.modal__content {
   position:absolute;
   top:50%;
   left:50%;
@@ -41,8 +50,7 @@ h1 {
 
 
 p { 
-  font-weight:300;
-  /*color:#4e4d50*/}
+  font-weight:300}
 
 
 i {
@@ -91,27 +99,45 @@ strong {
   flex-wrap:wrap}
 
 
-.table:first-child .table__head .table__item , .table__body .table__item {
+.table__head .table__item {
+  color:#4e4d50}
+
+
+.table:nth-child(2) .table__head .table__item {
     font-weight:600;
     color:#fff;
-    background:#5bc9f4}    
+    background:#00a9e4}    
 
 
-.table__head .table__item, .table:first-child .table__body .table__item{
-  font-weight:300; color:#808285; background:#d1d2d349; transition:0.3s}  
+.table:nth-child(2) .table__body .table__item{
+  font-weight:300; 
+  color:#808285; 
+  background:#d1d2d339; 
+  transition:0.3s}  
 
 
-.table:first-child .table__body .table__item:hover {
-  background:#d1d2d399; transition:0.3s; cursor:pointer}
+.table:nth-child(2) .table__body .table__item:hover {
+  background:#d1d2d399; 
+  transition:0.3s; 
+  cursor:pointer}
 
-
+  
 .table__item {
+  font-weight:300;
   text-transform:uppercase;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-left:0.5px solid #fff;
-  border-right:0.5x solid #fff}
+  border-left:1px solid #fff}
+
+
+.table:not(:nth-child(2)) .table__head .table__item {
+  font-weight:500}
+
+
+.table:not(:nth-child(2)) .table__body .table__item {
+  color:#008ed2; 
+  border-top:2px dotted #d1d2d3}  
 
 /*
 .table__item--pointer {
@@ -121,91 +147,94 @@ strong {
 
 
 /*----------------------------------Mobile----------------------------------*/
-@media only screen and (min-width:320px) {
-  body {
-    height:100vh}
-
-
+@media only screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
   .container {
-    margin:0 0.5em}
+    padding:2vh 2vw}
 
 
-  h1 {font-size:1.5rem}
+  h1 {font-size:1.5rem; 
+    margin-bottom:1vh}
+
+
+  .title-container {
+    margin-bottom:2.5vh}
 
 
   p {
-    margin:0.5em 0 0.8em 0;
+    margin:0.5vh 0 1.5vh;
     font-size:1rem;
     line-height:1.4rem}
 
 
   button {
-    padding:.3em 1em;
+    padding:0.8vh 2.2vw;
     font-size:0.9rem}
 
 
-  .modal__conent {
+  .modal__content {
     width:90%;
-    padding:1em 1em 1.2em 1em}
+    padding:2vh 2vh 3vh 2vh}
+
+  
+  .table {margin-bottom:7.5vh}
 
 
-  .table:first-child {
-    margin:0.5em 0}
-
-
-  .table {
-    margin:0.5em 1em 0.5em 0}      
+  .table:not(:nth-child(2)) {
+    margin-right:4.9vw}
 
 
   .table__item {
     width:6.83vw;
     height:6.83vw;
     font-size:0.88rem}
+
+
+  .table:not(:nth-child(2)) .table__item {
+    margin:0 0.5vw}  
 }
 
 
-@media only screen and (min-width:32px) and (max-width:767px) {
-  .table__head .table__item:nth-child(15), .table__head .table__item:nth-child(16), .table__head .table__item:nth-child(17), .table__head .table__item:nth-child(18), .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), .table__head .table__item:nth-child(25), .table__head .table__item:nth-child(26), .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(15), .table__body .table__item:nth-child(16), .table__body .table__item:nth-child(17), .table__body .table__item:nth-child(18), .table__body .table__item:nth-child(19), .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25), .table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {
-    margin-top:6.83vw}  
+@media only screen and (min-device-width:320px) and (max-device-width:1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+  .table__head .table__item:nth-child(15), .table__head .table__item:nth-child(16), 
+  .table__head .table__item:nth-child(17), .table__head .table__item:nth-child(18), 
+  .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), 
+  .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), 
+  .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), 
+  .table__head .table__item:nth-child(25), .table__head .table__item:nth-child(26), 
+  .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(15), 
+  .table__body .table__item:nth-child(16), .table__body .table__item:nth-child(17), 
+  .table__body .table__item:nth-child(18), .table__body .table__item:nth-child(19), 
+  .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), 
+  .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), 
+  .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25), 
+  .table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {
+    margin-top:4.1vh}  
 
-  .table__body {top:6.83vw}    
-  }    
+  .table__body {
+    top:4vh}    
+}    
 
 
 /*----------------------------------Table----------------------------------*/
-@media only screen and (min-width:768px) {
-  .container {
-    margin:0 1em}
-
-
+@media only screen and (min-device-width: 768px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
   h1 {
     font-size:1.8rem}
 
 
   p {
-    margin:0.6em 0 1em 0;
     font-size:1.1rem;
     line-height:1.5rem} 
   
 
   button {
-    padding:.3em 1em;
+    padding:0.6vh 2vw;
     font-size:1rem}
-
-
-  .modal__conent {
-    padding:1.5em}
-
-
-  .table:first-child {
-    margin:1.5em 0
-  }
-
-
+  
+  
   .table {
-    margin:1.5em 1.5em 1.5em 0} 
-  
-  
+    margin-bottom:7.7vh}
+
+
   .table__item {
     width:5.3vw;
     height:5.3vw;
@@ -213,48 +242,75 @@ strong {
 }
 
 
-@media only screen and (min-width:600px) and (max-width:1024px) {
-  .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), .table__head .table__item:nth-child(25),.table__head .table__item:nth-child(26), .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(19), .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25),.table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {margin-top:5.3vw}
+@media only screen and (min-device-width:768px) and (max-device-width:1024px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+  .table__head .table__item:nth-child(15), .table__head .table__item:nth-child(16), 
+  .table__head .table__item:nth-child(17), .table__head .table__item:nth-child(18),
+  .table__body .table__item:nth-child(15), .table__body .table__item:nth-child(16), 
+  .table__body .table__item:nth-child(17), .table__body .table__item:nth-child(18) {
+    margin-top:0vh}
 
+  
+  .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), 
+  .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), 
+  .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), 
+  .table__head .table__item:nth-child(25),.table__head .table__item:nth-child(26), 
+  .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(19), 
+  .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), 
+  .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), 
+  .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25),
+  .table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {
+    margin-top:4.1vh}
 
-  .table__body {top:5.3vw}
 } 
 
 
 /*----------------------------------Desktop----------------------------------*/
-@media only screen and (min-width:1280px) {
+@media only screen and (min-device-width: 1280px) and (-webkit-min-device-pixel-ratio: 1) {
   .container {
     margin:0 auto;
-    width:1220px}
+    padding:3vh;
+    width:1280px}
 
 
   h1 {
-    font-size:2rem}
+    font-size:2rem;
+    margin-bottom:2vh}
+
+
+  .title-container {
+    margin-bottom:2.5vh}
 
 
   p {
+    margin-bottom:2vh;
     font-size:1.4rem;
     line-height:1.7rem}
   
 
   button {
+    padding:0.5vh 1vw;
     font-size:1.2rem}
   
 
-  .modal__conent {
+  .modal__content {
     width:83%;
-    padding:1.5em 2em 2em 2em}
-
-
-  .table:first-child {
-    margin:2em 0}  
+    padding:2vh 1.5vw 2.5vh}
 
 
   .table {
-    margin:2em 3em 2em 0}  
+    margin-bottom:11vh}
+    
+
+  .table:not(:nth-child(2)) {
+    margin-right:4vw}  
 
 
   .table__item {
-    width:3.53vw;
-    height:3.53vw}
+    width:45px;
+    height:45px;
+    font-size:1.2rem}
+
+
+  .table:not(:nth-child(2)) .table__item {
+    margin:0 0.3vw}      
 }
