@@ -1,114 +1,106 @@
-(w => {
-  const button = document.querySelector('#calculate')
+;
+(() => {
+  /* -------------------- Elements -------------------- */
 
+  const button = document.querySelector('#calculate')
+  const result = document.querySelector('#resultado')
+  const formula = document.querySelector('#formula')
+  const form = document.querySelector('#form')
+
+  /* -------------------- Constants -------------------- */
+  const precio = 1
+
+  const SHIPPING_AIRPLANE  = 1
+  const SHIPPING_BOAT      = 2
+  const MEASURE_TYPE_CM_KG    = 1
+  const MEASURE_TYPE_INCH_LIB = 2
+
+  const HTML_LIB  = '<var>L</var><var>i</var><var>b</var><var>s</var>'
+  const HTML_LIBS = '<var>L</var><var>i</var><var>b</var><var>s</var>'
+  const HTML_FT3  = '<var>f</var><var>t</var><sup>3</sup>'
+
+  /* -------------------- Global -------------------- */
+  let total
+
+  // Reset
+  form.reset()
+
+  /* -------------------- Main function -------------------- */
   function calculate() {
 
-    const precio = '1'
+    // Selectors
+    const shippingType = Number(document.querySelector('input[type="radio"]:checked').value)
+    const measureType = Number(document.querySelector('#select').value)
 
-    const SHIPING_BOAT = '2'
-    const SHIPING_AIRPLANE = '1'
-    const MEASURE_TYPE_CM_KG = '1'
-    const MEASURE_TYPE_INCH_LIB = '2'
+    // Inputs
+    const height = Number(document.querySelector('#altura').value)
+    const width = Number(document.querySelector('#anchura').value)
+    const large = Number(document.querySelector('#largo').value)
+    const weight = Number(document.querySelector('#peso').value)
 
-    const shipingType = document.querySelector('input[type="radio"]:checked').value
-    const measureType = document.querySelector('#select').value
+    
 
-    const height = document.querySelector('#altura').value
-    const width = document.querySelector('#anchura').value
-    const large = document.querySelector('#largo').value
-    const peso = document.querySelector('#peso').value
+    if (!measureType && !height && !width && !large && !weight) return
 
-    const result = document.querySelector('#resultado')
-    const formula = document.querySelector('#formula')
+    // Calculations
+    let cubicCalculation = height * width * large
+    let convertCubicInch = (height * 0.393) * (width * 0.393) * (large * 0.393)
 
-    if (measureType && height && width && large && peso) {
-      let cubicCalculation = height * width * large
-      let convertCubicInch = (height * 0.393) * (width * 0.393) * (large * 0.393)
+    // Comprobations
 
-      if (shipingType === SHIPING_BOAT) {
+    if (shippingType === SHIPPING_AIRPLANE) {
 
-        if (measureType === MEASURE_TYPE_INCH_LIB) {
-          total = ''
+      if (measureType === MEASURE_TYPE_INCH_LIB) {
+        let libs = cubicCalculation * 0.007225
+        if (weight > libs) {
+          weight < 1 ? total = 1 : total = weight
+          result.value = total
+          formula.innerHTML = HTML_LIB
 
-          const cubicFoot = cubicCalculation * 0.000578
+        } else if (weight < libs) {
+          weight < 1 ? total = 1 : total = libs
+          result.value = total.toFixed(2) 
+          formula.innerHTML = HTML_LIB
+        }
+      }
 
-          total = cubicFoot * precio
+      if (measureType === MEASURE_TYPE_CM_KG) {
+        let libs = cubicCalculation * 0.000441
+        total = ''
 
-          if (total < "1")
-            total = 1
-
+        if (weight > libs) {
+          weight < 1 ? total = 1 : total = weight
+          result.value = total
+          formula.innerHTML = HTML_LIBS
+        } else if (weight < libs) {
+          weight < 1 ? total = 1 : total = libs 
           result.value = total.toFixed(2)
-          formula.innerHTML = `<var>f</var><var>t</var><sup>3</sup>`
-
-        } else if (measureType === MEASURE_TYPE_CM_KG) {
-          total = ''
-          let cubicFoot = convertCubicInch * 0.000578
-          
-          total = cubicFoot * precio
-
-          if (total < "1")
-            total = 1
-          
-          result.value = total.toFixed(2)
-          formula.innerHTML = `<var>f</var><var>t</var><sup>3</sup>`
+          formula.innerHTML = HTML_LIBS
         }
+      }
+    }
 
-      } else if (shipingType === SHIPING_AIRPLANE) {
+    if (shippingType === SHIPPING_BOAT) {
+      if (measureType === MEASURE_TYPE_CM_KG) {
+        const cubicFoot = convertCubicInch * 0.000578
+        total = cubicFoot * precio
 
-        if (measureType === MEASURE_TYPE_INCH_LIB) {
-          total = ''
+        total < 1 && (total = 1)
+        result.value = total.toFixed(2)
+        formula.innerHTML = HTML_FT3
 
-          let libs = cubicCalculation * 0.007225
+      } else if (measureType === MEASURE_TYPE_INCH_LIB) {
+        const cubicFoot = cubicCalculation * 0.000578
+        total = cubicFoot * precio
 
-          if (peso > libs) {
-            if (peso < "1")
-             total = 1
-            else
-             total = peso
-
-            result.value = total
-            formula.innerHTML = `<var>L</var><var>i</var><var>b</var><var>s</var>`
-          }
-
-          if (peso < libs) {
-            if (peso < "1")
-              total = 1
-            else
-              total = libs
-            
-            result.value = total.toFixed(2)
-            formula.innerHTML = '<var>L</var><var>i</var><var>b</var><var>s</var>'
-          }
-        }
-
-        if (measureType === MEASURE_TYPE_CM_KG) {
-          let total = ''
-          let libs = cubicCalculation * 0.000441
-
-          if (peso > libs) {
-            if (peso < "1")
-              total = 1
-            else
-              total = peso
-            result.value = total
-            formula.innerHTML = '<var>L</var><var>i</var><var>b</var><var>s</var>'
-          }
-
-          if (peso < libs) {
-            if (peso < "1")
-              total = 1
-            else
-              total = libs
-
-            result.value = total.toFixed(2)
-            formula.innerHTML = '<var>L</var><var>i</var><var>b</var><var>s</var>'
-          }
-        }
+        total < 1 && (total = 1)
+        result.value = total.toFixed(2)
+        formula.innerHTML = HTML_FT3
 
       }
     }
-  
   }
 
+  // Listener
   button.addEventListener('click', calculate)
-})(window)
+})()
