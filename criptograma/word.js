@@ -60,7 +60,7 @@ class Word {
       letters[42] = 'V'
       console.log(letters, this.total)
       letters.join('').toLowerCase() === this.total.join('').toLowerCase() && 
-      alert('Lo hiciste') // Here's goes the modal success, replace.
+      console.log('Lo hiciste') // Here's goes the modal success, replace.
     }
   }
 
