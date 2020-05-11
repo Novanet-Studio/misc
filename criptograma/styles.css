@@ -1,47 +1,260 @@
 /* ---------- Variables ---------- */
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: 'Ubuntu', sans-serif;
-}
+* {margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Fira Sans', sans-serif;
+  color:#808285}
+
+
+body {display:flex;
+  justify-content:center;
+  background-image:url("http://gruponovanet.com.ve/site/img/bg.svg")}
+
 
 .container {
-  display: flex;
-  width: 100vw;
-}
+  display:flex;
+  flex-wrap:wrap}
+
+
+#modal {
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(24, 24, 24, 0.95);
+  z-index:99999;
+  height:100%;
+  width:100%}
+
+
+.modal__conent {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:#fff}
+
+
+h1 {
+  margin:0;
+  font-weight:600;
+  color:#4e4d50}
+
+
+p { 
+  font-weight:300;
+  /*color:#4e4d50*/}
+
+
+i {
+  font-weight:600}
+
+
+button {
+  cursor:pointer;
+  border:0;
+  color:#fff;
+  background-color:#008ed2;
+  transition:0.3s}
+
+
+input {
+  border:none;
+  background:none;
+  text-align:center}
+
+
+button:hover, button:active {
+  background-color:#d21f43;
+  transition:0.3s}
+
+
+:focus {
+  outline:none !important}
+
+
+strong {
+  font-weight:600}
+
 
 .table {
-  border: 1px solid #ccc;
-  width: 100vw;
-}
+    position:relative}  
+
 
 .table__head {
-  display: flex;
-  border-bottom: 1px solid #ccc;
-  flex-wrap: wrap;
+  display:flex;
+  flex-wrap:wrap}
 
-}
 
 .table__body {
-  display: flex;
-  flex-wrap: wrap;
+  position:absolute;
+  display:flex;
+  flex-wrap:wrap}
 
-}
+
+.table:first-child .table__head .table__item , .table__body .table__item {
+    font-weight:600;
+    color:#fff;
+    background:#5bc9f4}    
+
+
+.table__head .table__item, .table:first-child .table__body .table__item{
+  font-weight:300; color:#808285; background:#d1d2d349; transition:0.3s}  
+
+
+.table:first-child .table__body .table__item:hover {
+  background:#d1d2d399; transition:0.3s; cursor:pointer}
+
 
 .table__item {
-  padding: 1rem;
-}
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-left:0.5px solid #fff;
+  border-right:0.5x solid #fff}
 
+/*
 .table__item--pointer {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  cursor: pointer;
+  cursor:pointer}
+
+# sourceMappingURL=styles.css.map */
+
+
+/*----------------------------------Mobile----------------------------------*/
+@media only screen and (min-width:320px) {
+  body {
+    height:100vh}
+
+
+  .container {
+    margin:0 0.5em}
+
+
+  h1 {font-size:1.5rem}
+
+
+  p {
+    margin:0.5em 0 0.8em 0;
+    font-size:1rem;
+    line-height:1.4rem}
+
+
+  button {
+    padding:.3em 1em;
+    font-size:0.9rem}
+
+
+  .modal__conent {
+    width:90%;
+    padding:1em 1em 1.2em 1em}
+
+
+  .table:first-child {
+    margin:0.5em 0}
+
+
+  .table {
+    margin:0.5em 1em 0.5em 0}      
+
+
+  .table__item {
+    width:6.83vw;
+    height:6.83vw;
+    font-size:0.88rem}
 }
 
-.table__item--pointer:hover {
-  color: darkgray;
+
+@media only screen and (min-width:32px) and (max-width:767px) {
+  .table__head .table__item:nth-child(15), .table__head .table__item:nth-child(16), .table__head .table__item:nth-child(17), .table__head .table__item:nth-child(18), .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), .table__head .table__item:nth-child(25), .table__head .table__item:nth-child(26), .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(15), .table__body .table__item:nth-child(16), .table__body .table__item:nth-child(17), .table__body .table__item:nth-child(18), .table__body .table__item:nth-child(19), .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25), .table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {
+    margin-top:6.83vw}  
+
+  .table__body {top:6.83vw}    
+  }    
+
+
+/*----------------------------------Table----------------------------------*/
+@media only screen and (min-width:768px) {
+  .container {
+    margin:0 1em}
+
+
+  h1 {
+    font-size:1.8rem}
+
+
+  p {
+    margin:0.6em 0 1em 0;
+    font-size:1.1rem;
+    line-height:1.5rem} 
+  
+
+  button {
+    padding:.3em 1em;
+    font-size:1rem}
+
+
+  .modal__conent {
+    padding:1.5em}
+
+
+  .table:first-child {
+    margin:1.5em 0
+  }
+
+
+  .table {
+    margin:1.5em 1.5em 1.5em 0} 
+  
+  
+  .table__item {
+    width:5.3vw;
+    height:5.3vw;
+    font-size:1.2rem}
 }
-/*# sourceMappingURL=styles.css.map */
+
+
+@media only screen and (min-width:600px) and (max-width:1024px) {
+  .table__head .table__item:nth-child(19), .table__head .table__item:nth-child(20), .table__head .table__item:nth-child(21), .table__head .table__item:nth-child(22), .table__head .table__item:nth-child(23), .table__head .table__item:nth-child(24), .table__head .table__item:nth-child(25),.table__head .table__item:nth-child(26), .table__head .table__item:nth-child(27), .table__body .table__item:nth-child(19), .table__body .table__item:nth-child(20), .table__body .table__item:nth-child(21), .table__body .table__item:nth-child(22), .table__body .table__item:nth-child(23), .table__body .table__item:nth-child(24), .table__body .table__item:nth-child(25),.table__body .table__item:nth-child(26), .table__body .table__item:nth-child(27) {margin-top:5.3vw}
+
+
+  .table__body {top:5.3vw}
+} 
+
+
+/*----------------------------------Desktop----------------------------------*/
+@media only screen and (min-width:1280px) {
+  .container {
+    margin:0 auto;
+    width:1220px}
+
+
+  h1 {
+    font-size:2rem}
+
+
+  p {
+    font-size:1.4rem;
+    line-height:1.7rem}
+  
+
+  button {
+    font-size:1.2rem}
+  
+
+  .modal__conent {
+    width:83%;
+    padding:1.5em 2em 2em 2em}
+
+
+  .table:first-child {
+    margin:2em 0}  
+
+
+  .table {
+    margin:2em 3em 2em 0}  
+
+
+  .table__item {
+    width:3.53vw;
+    height:3.53vw}
+}
