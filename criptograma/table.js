@@ -52,7 +52,7 @@ class Table {
     keywords.forEach((_, i) => {
       this.head += `<div class="table__item">${i+1}</div>`
       // this.body += `<div class="table__item" data-id=${i + 1}><p></p></div>`
-      this.body += `<div class="table__item table__item--pointer" data-id=${i + 1}>x</div>`;
+      this.body += `<div class="table__item table__item--pointer" data-id=${i + 1}></div>`;
     })
 
     this.template = template(this.head, this.body, true)
