@@ -11,14 +11,6 @@ body {display:flex;
   background-image:url("http://gruponovanet.com.ve/site/img/bg.svg")}
 
 
-body:before {background-color: rgba(255, 255, 255, 0.47);
-  content:'';
-  display:block;
-  height:100%;
-  position:absolute;
-  width:100%}  
-
-
 .container {
   display:flex;
   flex-wrap:wrap; 
@@ -112,7 +104,7 @@ strong {
 .table:nth-child(2) .table__body .table__item{
   font-weight:300; 
   color:#808285; 
-  background:#d1d2d339; 
+  background:#e7e8e6ff; 
   transition:0.3s}  
 
 
@@ -136,7 +128,7 @@ strong {
 
 
 .table:not(:nth-child(2)) .table__body .table__item {
-  color:#008ed2; 
+  color:#808080ff; 
   border-top:2px dotted #d1d2d3}  
 
 /*
