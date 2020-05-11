@@ -21,7 +21,6 @@ class Word {
     input.maxLength = 1
     input.focus()
     input.style.width = '35px' 
-    // input.style.border = 'none'
     input.setSelectionRange(0, text.length)
 
     // Save the letter
@@ -56,7 +55,6 @@ class Word {
     Array.from(items).forEach(item => 
       item.textContent && letters.push(item.textContent)
     )
-    // console.log(letters, this.total.length)
 
     if (letters.length === this.total.length) {
       letters[42] = 'V'

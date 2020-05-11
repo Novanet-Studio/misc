@@ -51,7 +51,6 @@ class Table {
   mainRow() {
     keywords.forEach((_, i) => {
       this.head += `<div class="table__item">${i+1}</div>`
-      // this.body += `<div class="table__item" data-id=${i + 1}><p></p></div>`
       this.body += `<div class="table__item table__item--pointer" data-id=${i + 1}></div>`;
     })
 
@@ -74,10 +73,8 @@ class Table {
     // Event Propagation - Delegation
     window.addEventListener('click', e => {
       if (!e.target.classList.contains('table__item--pointer')) return
-
+      // Call the input event
       new Word().input(e.target)
-      // if (e.target.localName === 'td' && e.target.children[0])
-      //   new Word().input(e.target.children[0])
     })
   }
 }
